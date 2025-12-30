@@ -5,6 +5,12 @@ import io
 
 app = Flask(__name__)
 
+# --- NOVA ROTA ADICIONADA AQUI ---
+@app.route("/")
+def index():
+    return "API de Voz Online! Para usar, acesse: /tts/seu-texto-aqui"
+# ---------------------------------
+
 @app.route("/tts/<text>")
 def tts(text):
     # Gera o áudio na memória para evitar problemas com arquivos no servidor
@@ -19,4 +25,3 @@ if __name__ == "__main__":
     # O Railway fornece a porta via variável de ambiente PORT
     port = int(os.environ.get("PORT", 8000))
     app.run(host="0.0.0.0", port=port)
-    
