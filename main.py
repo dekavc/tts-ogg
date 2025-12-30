@@ -1,16 +1,6 @@
-from gtts import gTTS
 import time
+from gtts import gTTS
 
-# Loop infinito leve para manter o container vivo
+# Mantém o container vivo sem sobrecarregar CPU
 while True:
-    # Texto de teste
-    text = "Olá! Serviço TTS funcionando."
-    
-    # Gerar áudio OGG
-    tts = gTTS(text=text, lang='pt')
-    tts.save("audio.ogg")
-    
-    print("Arquivo audio.ogg gerado com sucesso!")
-    
-    # Espera 60 segundos antes de gerar novamente (evita travar CPU)
-    time.sleep(60)
+    time.sleep(1)  # loop leve, apenas para não crashar
