@@ -1,6 +1,16 @@
-import time
+from flask import Flask
 from gtts import gTTS
+import os
 
-# Mantém o container vivo sem sobrecarregar CPU
-while True:
-    time.sleep(1)  # loop leve, apenas para não crashar
+app = Flask(__name__)
+
+@app.route("/tts/<text>")
+def tts(text):
+    tts = gTTS(text=text, lang="pt")
+    filename = "audio.ogg"
+    tts.save(filename)
+    return f"Arquivo {filename} gerado com sucesso!"
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 3000))
+    app.run(host="0.0.0.0", port=port)
